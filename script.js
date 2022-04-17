@@ -2,15 +2,41 @@ let numeroPergunta = 1
 let acertos = 0
 let perguntaRespondida = 0
 let tentativas = 0
+const numeroMostrarGrande = document.querySelector(".perguntas")
+ 
+const perguntaAtual = document.querySelector(".pergunta")
+const questãoUm = document.querySelector(".p1")
+const questãoDois = document.querySelector(".p2")
+const questãoTrês = document.querySelector(".p3")
+const questãoQuatro = document.querySelector(".p4")
 
-let perguntaAtual = document.querySelector(".pergunta")
-let questãoUm = document.querySelector(".p1")
-let questãoDois = document.querySelector(".p2")
-let questãoTrês = document.querySelector(".p3")
-let questãoQuatro = document.querySelector(".p4")
+const numeroPerguntaBot = document.querySelector(".numero")
+const segundosHtml = document.querySelector(".seconds")
 
-let numeroPerguntaBot = document.querySelector(".numero")
-let segundosHtml = document.querySelector(".seconds")
+const acabouBotao = document.querySelector(".botaoPergunta")
+
+acabouBotao.addEventListener("click", function(){
+    if(numeroPergunta == 2){
+        tentativas = 0
+        segundaPergunta()
+    } else if(numeroPergunta == 3){
+        tentativas = 0
+        terceiraPergunta()
+    } else if(numeroPergunta == 4){
+        tentativas = 0
+        quartaPergunta()
+    } else if(numeroPergunta == 5){       
+        numeroMostrarGrande.parentNode.removeChild(numeroMostrarGrande)
+        numeroDiv.textContent = acertos;
+        alert("Parabéns, você acabou o quiz com um total de "+ acertos +" acertos!")
+        window.addEventListener("load", criarDiv())
+        acabouBotao.innerHTML = "reiniciar página"
+        acabouBotao.addEventListener("click", function(){
+            window.location.reload()
+        })
+    }
+})
+
 
 function limparBotoes(){
     questãoUm.style.backgroundColor = "#1bbbf8"
@@ -57,140 +83,119 @@ function quartaPergunta(){
     limparBotoes()
     numeroPerguntaBot.innerHTML = numeroPergunta
 
-    let acabouBotao = document.querySelector(".botaoPergunta").textContent = "Acabar quiz"
+    acabouBotao.textContent = "Acabar quiz"
 }
 
-function respostaUm(){
-    if(numeroPergunta == 1 && tentativas == 0){
-        questãoUm.style.backgroundColor = "red"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-    } else if (numeroPergunta == 2 && tentativas == 0){
-        questãoUm.style.backgroundColor = "red"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 3 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "red"
-        questãoDois.style.backgroundColor = "green"
-        questãoTrês.style.backgroundColor = "#1bbbf8"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 4 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "green"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "#1bbbf8"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-        acertos++
+function opcaoUm(){
+    if(tentativas == 0){
+        switch(numeroPergunta){
+            case 1:
+                limparBotoes(), questãoUm.style.backgroundColor = "red", questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 2:
+                limparBotoes(), questãoUm.style.backgroundColor = "red", questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 3:
+                limparBotoes(), questãoUm.style.backgroundColor = "red", questãoDois.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 4:
+                limparBotoes(), questãoUm.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                acertos++
+                break
+        }
     }
 }
 
-function respostaDois(){
-    if(numeroPergunta == 1 && tentativas == 0){
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "red"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-    } else if (numeroPergunta == 2 && tentativas == 0){
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "red"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 3 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "green"
-        questãoTrês.style.backgroundColor = "#1bbbf8"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
-        acertos++
-    } else if(numeroPergunta == 4 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "green"
-        questãoDois.style.backgroundColor = "red"
-        questãoTrês.style.backgroundColor = "#1bbbf8"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
+function opcaoDois(){
+    if(tentativas == 0){
+        switch(numeroPergunta){
+            case 1:
+                limparBotoes(), questãoDois.style.backgroundColor = "red", questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 2:
+                limparBotoes(), questãoDois.style.backgroundColor = "red", questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 3:
+                limparBotoes(), questãoDois.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                acertos++
+                break
+            case 4:
+                limparBotoes(), questãoDois.style.backgroundColor = "red", questãoUm.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+        }
     }
 }
 
-function respostaTrês(){
-    if(numeroPergunta == 1 && tentativas == 0){
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        acertos++
-        numeroPergunta++
-        tentativas = 1
-    } else if (numeroPergunta == 2 && tentativas == 0){
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        acertos++
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 3 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "green"
-        questãoTrês.style.backgroundColor = "red"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numertoPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 4 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "green"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "red"
-        questãoQuatro.style.backgroundColor = "#1bbbf8"
-        numeroPergunta++
-        tentativas = 1
+function opcaoTres(){
+    if(tentativas == 0){
+        switch(numeroPergunta){
+            case 1:
+                limparBotoes(), questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                acertos++
+                break
+            case 2:
+                limparBotoes(), questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                acertos++
+                break
+            case 3:
+                limparBotoes(), questãoTrês.style.backgroundColor = "red", questãoDois.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 4:
+                limparBotoes(), questãoTrês.style.backgroundColor = "red", questãoDois.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+        }
     }
 }
 
-function respostaQuatro(){
-    if(numeroPergunta == 1 && tentativas == 0){
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "red"
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 2 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "green"
-        questãoQuatro.style.backgroundColor = "red"
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 3 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "#1bbbf8"
-        questãoDois.style.backgroundColor = "green"
-        questãoTrês.style.backgroundColor = "#1bbbf8"
-        questãoQuatro.style.backgroundColor = "red"
-        numeroPergunta++
-        tentativas = 1
-    } else if(numeroPergunta == 4 && tentativas == 0) {
-        questãoUm.style.backgroundColor = "green"
-        questãoDois.style.backgroundColor = "#1bbbf8"
-        questãoTrês.style.backgroundColor = "#1bbbf8"
-        questãoQuatro.style.backgroundColor = "red"
-        numeroPergunta++
-        tentativas = 1
+function opcaoQuatro(){
+    if(tentativas == 0){
+        switch(numeroPergunta){
+            case 1:
+                limparBotoes(), questãoQuatro.style.backgroundColor = "red", questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 2:
+                limparBotoes(), questãoQuatro.style.backgroundColor = "red", questãoTrês.style.backgroundColor = "green"
+                numeroPergunta++
+                tentativas++
+                break
+            case 3:
+                limparBotoes(), questãoQuatro.style.backgroundColor = "red", questãoDois.style.backgroundColor = "green"    
+                numeroPergunta++
+                tentativas++
+                break
+            case 4:
+                limparBotoes(), questãoQuatro.style.backgroundColor = "red", questãoUm.style.backgroundColor = "green" 
+                numeroPergunta++
+                tentativas++
+                break
+        }
     }
-    
 }
 
 function iniciarTimer(sec, html){
@@ -199,11 +204,24 @@ function iniciarTimer(sec, html){
                     sec--
                     if(sec == 0){
                         setTimeout(function(){
+                            acabouBotao.disabled = true
                             alert("Seu tempo acabou")
                             clearInterval(timer)
                         }, 1000)
+                    } else if (numeroPergunta == 5) {
+                        clearInterval(timer)
                     }
                 }, 1000)
+}
+
+const numeroDiv = document.createElement("numeroDiv")
+numeroDiv.classList.add("resultadoFinal")
+const meio = document.querySelector(".mid")
+numeroDiv.textContent = acertos;
+
+function criarDiv(){
+    document.querySelector(".mid").appendChild(numeroDiv);
+
 }
 
 function proximaPergunta(){
@@ -216,8 +234,12 @@ function proximaPergunta(){
     } else if(numeroPergunta == 4){
         tentativas = 0
         quartaPergunta()
-    } else if(numeroPergunta == 5){
+    } else if(numeroPergunta == 5){       
+        numeroMostrarGrande.parentNode.removeChild(numeroMostrarGrande)
+        numeroDiv.textContent = acertos;
         alert("Parabéns, você acabou o quiz com um total de "+ acertos +" acertos!")
+        window.addEventListener("load", criarDiv())
+        acabouBotao.innerHTML = "reiniciar página"
     }
 }
 
